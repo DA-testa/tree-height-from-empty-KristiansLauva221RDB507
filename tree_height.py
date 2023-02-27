@@ -25,7 +25,7 @@ def compute_height(n, parents):
 
 
 def main():
-    input_type = input("Enter input type (I for user input, F for file input): ")
+    input_type = input("")
     if input_type == "I":
         # read input from user
         n = int(input())
