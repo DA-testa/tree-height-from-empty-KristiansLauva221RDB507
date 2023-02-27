@@ -31,15 +31,17 @@ def compute_height(n, parents):
 def main():
     # read input from stdin or file
     mode = input()
-    if mode == 'I':
-        n = int(input())
-        parents = list(map(int, input().split()))
-    elif mode == 'F':
+    if mode == 'F':
         filename = input()
         if "a" not in filename:
             with open(filename, 'r') as f:
                 n = int(f.readline().strip())
                 parents = list(map(int, f.readline().strip().split()))
+        else :
+            print("error")
+    elif "I"in mode:
+        n = int(input())
+        parents = list(map(int, input().split()))
     else:
         print("Invalid input mode.")
         return
