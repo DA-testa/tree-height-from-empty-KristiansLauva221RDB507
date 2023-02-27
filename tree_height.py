@@ -25,9 +25,20 @@ def compute_height(n, parents):
 
 
 def main():
-    # read input from stdin
-    n = int(input())
-    parents = list(map(int, input().split()))
+    input_type = input("Enter input type (I for user input, F for file input): ")
+    if input_type == "I":
+        # read input from user
+        n = int(input())
+        parents = list(map(int, input().split()))
+    elif input_type == "F":
+        # read input from file
+        filename = input("Enter filename: ")
+        with open(filename) as f:
+            n = int(f.readline())
+            parents = list(map(int, f.readline().split()))
+    else:
+        print("Invalid input type")
+        return
 
     # compute the height of the tree
     height = compute_height(n, parents)
