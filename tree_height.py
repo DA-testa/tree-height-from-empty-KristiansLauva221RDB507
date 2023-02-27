@@ -26,18 +26,17 @@ def compute_height(n, parents):
 
 
 def main():
-    # ask user for input type
-    input_type = input()
+    # ask user for input type and read input accordingly
+    input_type, n = input().split()
+    n = int(n)
     
     if input_type == "I":
         # read input from user
-        n = int(input())
         parents = list(map(int, input().split()))
     elif input_type == "F":
         # read input from file
         filename = input("Enter filename: ")
         with open(filename, "r") as f:
-            n = int(f.readline())
             parents = list(map(int, f.readline().split()))
     else:
         print("Invalid input type. Please enter 'I' or 'F'.")
