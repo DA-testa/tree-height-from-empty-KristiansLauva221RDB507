@@ -12,7 +12,11 @@ def compute_height(n, parents):
             paren[i] == 1
         else:
             paren[i] = height(parents[i]) + 1
-        return int(max(paren))
+        return paren[i]
+    
+    for i in range(n):
+        height(i)
+    return int(max(paren))
 
 def main():
     
