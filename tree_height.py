@@ -8,7 +8,7 @@ def compute_height(n, parents):
         if paren[i] != 0:
             return paren[i]
         if parents[i] == -1:
-            paren[i] == 1
+            paren[i] = 1
         else:
             paren[i] = height(parents[i])+1
         return paren[i]
