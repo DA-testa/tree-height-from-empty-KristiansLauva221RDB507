@@ -1,10 +1,9 @@
 import sys
 import threading
-import numpy as np
+import numpy
 
 def compute_height(n, parents):
-   
-    paren = np.zeros(n)
+    paren = numpy.zeros(n)
     def height(i):
         if paren[i] != 0:
             return paren[i]
