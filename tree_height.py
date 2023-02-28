@@ -1,47 +1,46 @@
 import sys
 import threading
-import numpy as np
+
 
 def compute_height(n, parents):
-    # create a NumPy array to store the children of each node
-    children = np.empty((n,), dtype=np.ndarray)
+    # create a dictionary to store the children of each node
+    children = {i: [] for i in range(n)}
 
-    # find the root node
+    # find the root node and populate the children dictionary
     root = -1
     for i in range(n):
         if parents[i] == -1:
             root = i
         else:
-            if children[parents[i]] is None:
-                children[parents[i]] = np.empty((0,), dtype=int)
-            children[parents[i]] = np.append(children[parents[i]], i)
+            children[parents[i]].append(i)
 
-    # recursive function to find the height of each subtree
-    def find_height(node):
-        if children[node] is None:
-            return 1
-        else:
-            heights = np.array([find_height(child) for child in children[node]])
-            return np.max(heights) + 1
+    # iterative function to find the height of each subtree
+    stack = [(root, 1)]
+    max_height = 1
+    while stack:
+        node, height = stack.pop()
+        max_height = max(max_height, height)
+        for child in children[node]:
+            stack.append((child, height + 1))
 
     # compute the height of the whole tree
-    return find_height(root)
+    return max_height
 
 
 def main():
     # read input from stdin or file
-    mode = input()
+    mode = sys.stdin.readline().strip()
     if mode == 'F':
-        filename = input()
+        filename = sys.stdin.readline().strip()
         if "a" not in filename:
             with open(filename, 'r') as f:
                 n = int(f.readline().strip())
                 parents = list(map(int, f.readline().strip().split()))
-        else :
+        else:
             print("error")
-    elif "I"in mode:
-        n = int(input())
-        parents = list(map(int, input().split()))
+    elif "I" in mode:
+        n = int(sys.stdin.readline().strip())
+        parents = list(map(int, sys.stdin.readline().strip().split()))
     else:
         print("Invalid input mode.")
         return
