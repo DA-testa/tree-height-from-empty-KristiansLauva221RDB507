@@ -25,7 +25,7 @@ def main():
         filename = input()
         if "a" not in filename:
             with open(str("test/"+filename), mode="r") as f:
-                nav = int(f.readline().strip())
+                nav = int(f.readline())
                 parent = list(map(int, f.readline().split()))
         else :
             print("error")
